@@ -10,6 +10,10 @@ module.exports = {
       alt: 'Logo image',
       src: '/auth/logo.png',
     },
+    logohome: {
+      alt: 'Logo Home',
+      src: '/auth/logohome.png',
+    },
     highlight: {
       alt: 'Fait marquant',
       src: '/form/highlight.svg',

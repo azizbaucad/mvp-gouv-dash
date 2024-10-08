@@ -7,6 +7,7 @@ import {
   GridItem,
   HStack,
   Select,
+  SimpleGrid,
   Stack,
   Text,
   VStack,
@@ -42,6 +43,8 @@ import moment from 'moment';
 import { DataTableGenTest } from '@components/common/tables';
 import { FcLineChart } from 'react-icons/fc';
 import { LineChartsParcOM } from '@components/common/charts/linecharts';
+import { HiHome } from 'react-icons/hi2';
+import { AddForm, AddViewForm, FollowerCount } from '@components/common/Items/items';
 
 export default function DescFormPage(props) {
   const router = useRouter();
@@ -165,7 +168,7 @@ export default function DescFormPage(props) {
   return (
     <DashboardLayout activeMenu={'account-dashboard'}>
       <Stack
-        mt={1}
+        mt={6}
         w={'100%'}
         bg="#cbd5e1"
         borderColor="#bfbfbf"
@@ -173,23 +176,23 @@ export default function DescFormPage(props) {
         p={1}
         borderRadius={gstyle.radiusform}
       >
-        <HStack p={1} mt={1} justifyContent={'space-between'}>
+        <HStack p={1} justifyContent={'space-between'}>
           {/* <ButtonBack color="gray"  /> */}
-          <Box ml={1}>
+          <Box ml={1.5}>
             <PageTitle
               titleSize={16}
               titleColor={'black'}
               subtitleColor={'#404245'}
               subtitleSize={16}
-              icon={<FcLineChart size={26} color="#9999ff" />}
+              icon={<HiHome size={24} color="#fff" />}
               title={'Dashboard'}
               subtitle={'/ Accueil'}
             />
           </Box>
-          <Box mr={3}>
+          <Box mr={2}>
             <Button
               w={'100%'}
-              bgColor={'#9999ff'}
+              bgColor={'#3c8484'}
               color={'white'}
               h={'2.5rem'}
               type="submit"
@@ -197,7 +200,7 @@ export default function DescFormPage(props) {
               fontWeight={500}
               fontFamily="'Roboto mono', sans-serif"
               _hover={{
-                bgColor: '#9999ff', // Le hover reste la même couleur pour un effet "désactivé"
+                bgColor: '#359d9d', // Le hover reste la même couleur pour un effet "désactivé"
                 cursor: 'not-allowed', // Changer le curseur pour indiquer que le bouton est désactivé
               }}
               _disabled={{
@@ -213,370 +216,81 @@ export default function DescFormPage(props) {
             </Button>
           </Box>
         </HStack>
-        <Divider mt={1} mb={1} />
 
-        <Stack p={3}>
+        <Stack p={3} mt={6} w="100%">
           <Grid
             templateRows="repeat(4, 1fr)"
-            templateColumns="repeat(4, 1fr)"
-            h={'100vh'}
-            gap={2}
+            templateColumns={{ base: 'repeat(4, 1fr)', md: 'repeat(4, 1fr)' }}
+            h="auto"
+            w='auto'
+            gap={4}
           >
+            {/* Première ligne */}
             <GridItem
               rowSpan={1}
-              colSpan={1}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
+              colSpan={{ base: 1, md: 4 }}
+              bg="#e2e8f0"
+              p={4}
+              borderRadius="lg"
             >
-              <Box>
-                <TagTitle title={"Nombre d'actions"} size={16} />
-                <Divider mt={2} />
-                <ValuesData
-                  iconType="up"
-                  value={60}
-                  delta={{
-                    label: 'Last Year',
-                    value: '+5%',
-                    valueColor: '#02bc7d',
-                  }}
-                />
-              </Box>
-              {/* <Divider mt={3} mb={2} /> */}
+              <SimpleGrid
+                columns={{ base: 2, md: 3, lg: 6 }}
+                spacing={4}
+              >
+                <FollowerCount />
+                <FollowerCount />
+                <FollowerCount />
+                <FollowerCount />
+                <FollowerCount />
+                <FollowerCount />
+              </SimpleGrid>
             </GridItem>
 
             <GridItem
               rowSpan={1}
-              colSpan={3}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
+              colSpan={{ base: 1, md: 4 }} // Prenez toute la largeur sur mobile et bureau
+              bg="#e2e8f0"
+              p={4}
+              borderRadius="lg"
+              justifyContent={'start'}
             >
-              <Box>
-                <TagTitle title={'Action'} size={16} />
-              </Box>
-              <Divider mt={2} mb={2} />
-              <HStack justifyContent={'space-between'} alignItems="center">
-                <HStack justifyContent={'space-between'}>
-                  <ValuesData
-                    tagName={'Action en cours'}
-                    iconType="up"
-                    value={12}
-                    delta={{
-                      label: 'Last Year',
-                      value: '+5%',
-                      valueColor: '#02bc7d',
-                    }}
-                  />
-                </HStack>
-                <Box h={'8vh'}>
-                  <Divider
-                    orientation="vertical"
-                    borderWidth={'1px'}
-                    borderColor={'#ebedf2'}
-                  />
-                </Box>
-                <HStack justifyContent={'space-between'}>
-                  <ValuesData
-                    tagName={'Action réalisé'}
-                    iconType="up"
-                    value={14}
-                    delta={{
-                      label: 'Last Year',
-                      value: '+5%',
-                      valueColor: '#02bc7d',
-                    }}
-                  />
-                </HStack>
-                <Box h={'8vh'}>
-                  <Divider
-                    orientation="vertical"
-                    borderWidth={'1px'}
-                    borderColor={'#ebedf2'}
-                  />
-                </Box>
-                <HStack justifyContent={'space-between'}>
-                  <ValuesData
-                    tagName={'Action en attente'}
-                    iconType="up"
-                    value={600}
-                    delta={{
-                      label: 'Last Year',
-                      value: '+5%',
-                      valueColor: '#02bc7d',
-                    }}
-                  />
-                </HStack>
-              </HStack>
+              <SimpleGrid
+                columns={{ base: 2, md: 3, lg: 6 }} // 6 colonnes sur grand écran, 3 sur moyen, 2 sur petit
+                spacing={2} // Espacement entre les éléments
+                justifyContent={'start'}
+              >
+                <AddViewForm />
+                <AddViewForm />
+                <AddViewForm />
+                <AddViewForm />
+                {/* <AddForm title={'Add a plan'} />
+                <AddForm title={'Add a project'} />
+                <AddForm title={'Add a Directive'} />
+                <AddForm title={'Add a Programme'} /> */}{/* 
+                <AddForm title={'Add a plan'} />
+                <AddForm title={'Add a plan'} /> */}
+              </SimpleGrid>
+            </GridItem>
+
+            {/* Troisième ligne */}
+            <GridItem
+              rowSpan={2}
+              colSpan={{ base: 1, md: 2 }}
+              bg="#e2e8f0"
+              p={4}
+              borderRadius="lg"
+            >
+              {/* Contenu ici */}
             </GridItem>
 
             <GridItem
-              rowSpan={1}
-              colSpan={1}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
+              rowSpan={2}
+              colSpan={{ base: 1, md: 2 }}
+              bg="#e2e8f0"
+              p={4}
+              borderRadius="lg"
             >
-              <Box>
-                <TagTitle title={'Nombre de programmes'} size={16} />
-                <Divider mt={2} />
-                <ValuesData
-                  iconType="up"
-                  value={20}
-                  delta={{
-                    label: 'Last Year',
-                    value: '+5%',
-                    valueColor: '#02bc7d',
-                  }}
-                />
-              </Box>
-              {/* <Divider mt={3} mb={2} /> */}
-            </GridItem>
-
-            <GridItem
-              rowSpan={1}
-              colSpan={3}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
-            >
-              <Box>
-                <TagTitle title={'Programme'} size={16} />
-              </Box>
-              <Divider mt={2} mb={2} />
-              <HStack justifyContent={'space-between'} alignItems="center">
-                <HStack justifyContent={'space-between'}>
-                  <ValuesData
-                    tagName={'programme en cours'}
-                    iconType="up"
-                    value={12}
-                    delta={{
-                      label: 'Last Year',
-                      value: '+5%',
-                      valueColor: '#02bc7d',
-                    }}
-                  />
-                </HStack>
-                <Box h={'8vh'}>
-                  <Divider
-                    orientation="vertical"
-                    borderWidth={'1px'}
-                    borderColor={'#ebedf2'}
-                  />
-                </Box>
-                <HStack justifyContent={'space-between'}>
-                  <ValuesData
-                    tagName={'Programme réalisé'}
-                    iconType="up"
-                    value={14}
-                    delta={{
-                      label: 'Last Year',
-                      value: '+5%',
-                      valueColor: '#02bc7d',
-                    }}
-                  />
-                </HStack>
-                <Box h={'8vh'}>
-                  <Divider
-                    orientation="vertical"
-                    borderWidth={'1px'}
-                    borderColor={'#ebedf2'}
-                  />
-                </Box>
-                <HStack justifyContent={'space-between'}>
-                  <ValuesData
-                    tagName={'Programme en attente'}
-                    iconType="up"
-                    value={600}
-                    delta={{
-                      label: 'Last Year',
-                      value: '+5%',
-                      valueColor: '#02bc7d',
-                    }}
-                  />
-                </HStack>
-              </HStack>
-            </GridItem>
-            <GridItem
-              rowSpan={1}
-              colSpan={1}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
-            >
-              <Box>
-                <TagTitle title={'Nombre de projets'} size={16} />
-                <Divider mt={2} />
-                <ValuesData
-                  iconType="up"
-                  value={60}
-                  delta={{
-                    label: 'Last Year',
-                    value: '+5%',
-                    valueColor: '#02bc7d',
-                  }}
-                />
-              </Box>
-              {/* <Divider mt={3} mb={2} /> */}
-            </GridItem>
-
-            <GridItem
-              rowSpan={1}
-              colSpan={3}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
-            >
-              <Box>
-                <TagTitle title={'Projet'} size={16} />
-              </Box>
-              <Divider mt={2} mb={2} />
-              <HStack justifyContent={'space-between'} alignItems="center">
-                <HStack justifyContent={'space-between'}>
-                  <ValuesData
-                    tagName={'Projet en cours'}
-                    iconType="up"
-                    value={12}
-                    delta={{
-                      label: 'Last Year',
-                      value: '+5%',
-                      valueColor: '#02bc7d',
-                    }}
-                  />
-                </HStack>
-                <Box h={'8vh'}>
-                  <Divider
-                    orientation="vertical"
-                    borderWidth={'1px'}
-                    borderColor={'#ebedf2'}
-                  />
-                </Box>
-                <HStack justifyContent={'space-between'}>
-                  <ValuesData
-                    tagName={'Projet réalisé'}
-                    iconType="up"
-                    value={14}
-                    delta={{
-                      label: 'Last Year',
-                      value: '+5%',
-                      valueColor: '#02bc7d',
-                    }}
-                  />
-                </HStack>
-                <Box h={'8vh'}>
-                  <Divider
-                    orientation="vertical"
-                    borderWidth={'1px'}
-                    borderColor={'#ebedf2'}
-                  />
-                </Box>
-                <HStack justifyContent={'space-between'}>
-                  <ValuesData
-                    tagName={'Projet en attente'}
-                    iconType="up"
-                    value={600}
-                    delta={{
-                      label: 'Last Year',
-                      value: '+5%',
-                      valueColor: '#02bc7d',
-                    }}
-                  />
-                </HStack>
-              </HStack>
-            </GridItem>
-
-            {/* <GridItem
-              rowSpan={50}
-              colSpan={3}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
-            >
-              <Box>
-                <TagTitle title={'Table des direcives'} size={16} />
-              </Box>
-              <Divider mt={3} mb={2} />
-              <HStack justifyContent={'space-between'} alignItems="center">
-                <HStack justifyContent={'space-between'} w={'100%'}>
-                  <DataTableGenTest />
-                </HStack>
-              </HStack>
-            </GridItem>
-            <GridItem
-              rowSpan={50}
-              colSpan={1}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
-            >
-              <Box>
-                <TagTitle
-                  title={"Etat d'avancement des directives"}
-                  size={16}
-                />
-              </Box>
-              <Divider mt={3} mb={2} />
-              <HStack justifyContent={'space-between'} alignItems="center">
-                <HStack justifyContent={'space-between'}>
-                  <HorizontalBarChart2 chartData={data_ParcMobile} />
-                </HStack>
-              </HStack>
-            </GridItem> */}
-            <GridItem
-              rowSpan={60}
-              colSpan={2}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
-            >
-              <Box>
-                <TagTitle title={'Evolution du budget consomé'} size={16} />
-              </Box>
-              <Divider mt={3} mb={2} />
-              <Box w={'100%'} h={'100%'} mt={5}>
-                <LineChartsParcOM />
-              </Box>
-            </GridItem>
-            <GridItem
-              rowSpan={60}
-              colSpan={2}
-              bg="#f1f5f9"
-              p={gstyle.p}
-              borderRadius={gstyle.radius}
-              overflow="auto"
-              css={scroll_customize}
-            >
-              <Stack mt={0}>
-                <HightlightHeader status={DefaultHighlightstatus} />
-              </Stack>
-
-              <Divider mb={3} mt={3} />
-              <HStack mb={3} justifyContent={'space-between'}>
-                <Box>
-                  <Box mr={1} bg={'#fff'} borderRadius={6}>
-                    <Select
-                      width={'15rem'}
-                      type="text"
-                      value={selectedStatus}
-                      onChange={(e) => setSelectedStatus(e.target.value)}
-                    >
-                      <option key="all" value="all">
-                        Tous les faits marquants
-                      </option>
-                      {statusList.map((option, index) => (
-                        <option key={index} value={option.name}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </Select>
-                  </Box>
-                </Box>
-              </HStack>
-              <Stack mt={2}>
-                {simulatedData.map((highlight, i) =>
-                  displayHighlight(highlight, i)
-                )}
-              </Stack>
+              {/* Contenu ici */}
             </GridItem>
           </Grid>
         </Stack>

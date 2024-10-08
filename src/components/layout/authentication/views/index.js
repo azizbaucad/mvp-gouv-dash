@@ -28,7 +28,7 @@ export const DesktopLayoutView = ({ children }) => {
         w={'50%'}
       >
         <Image
-          src={images.logo.src}
+          src={images.logohome.src}
           height={230}
           width={230}
           alt={images.logo.alt}
@@ -42,7 +42,7 @@ export const MobileLayoutView = ({ children }) => {
   return (
     <VStack bgColor={colors.secondary.newregular} p={10} h={'100vh'} w={'100vw'}>
       <Box pos={'relative'} mb={20.01} minH={80.01} w={80.01}>
-        <Image src={images.logo.src} fill alt={images.logo.alt} />
+        <Image src={images.logohome.src} fill alt={images.logohome.alt} />
       </Box>
       <Box
         alignItems={'center'}

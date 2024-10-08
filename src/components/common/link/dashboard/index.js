@@ -13,26 +13,27 @@ export const DashboardLink = ({
 }) => {
   const behaviorProps = active
     ? {
-        color: colorMenu || colors.primary.black, // Utilisation de colorMenu
+        color: colorMenu || colors.primary.white, // Utilisation de colorMenu
         _hover: { cursor: cursor || 'default' }, // Utilisation de la prop cursor
-        border: '1px solid #cfd1d7', // Bordure grise claire
-        backgroundColor: '#cbd5e1', // Couleur de fond pour les éléments actifs
-        padding: '2px 4px', // Espacement intérieur
+        border: '3px solid #454d57', // Bordure grise claire
+        borderRadius: '5px',
+        backgroundColor: '#454d57', // Couleur de fond pour les éléments actifs
+        padding: '2px 5px', // Espacement intérieur
       }
     : {
         _hover: {
           cursor: cursor || 'pointer', // Utilisation de la prop cursor
-          color: colorMenu || colors.primary.blackQuick, // Utilisation de colorMenu
+          color: colorMenu || colors.primary.white, // Utilisation de colorMenu
         },
-        color: colorMenu || colors.primary.blackQuick, // Couleur principale noire rapide
-        padding: '2px 4px', // Espacement intérieur
+        color: colorMenu || colors.primary.white, // Couleur principale noire rapide
+        padding: '2px 5px', // Espacement intérieur
       };
 
   return (
     <HStack
       {...behaviorProps}
       alignItems={'start'}
-      borderRadius={10}
+      borderRadius={5}
       marginRight={0}
       w={'100%'}
       marginBottom={1}
@@ -49,11 +50,10 @@ export const DashboardLink = ({
       <Box mb={1}>{icon}</Box>
 
       <Heading
-        alignItems={'start'}
-        fontFamily="'Roboto Mono', sans-serif"
+        alignItems={'center'}
         w={'100%'}
-        fontSize={12.5}
-        fontWeight={500}
+        fontSize={14}
+        fontWeight={400}
         pl={0}
         pr={0}
         mb={1}

@@ -44,27 +44,16 @@ import { scroll_customize } from '@components/common/styleprops';
     </Box>
   );
  }
-export const DesktopDashboardLayoutView = ({ children, activeLink }) => {
+ export const DesktopDashboardLayoutView = ({ children, activeLink }) => {
   return (
-    <Stack h={'100vh'} w={'100%'} bgColor={'#f1f5f9'}>
-      <HStack alignItems={'flex-start'} h={'100vh'} w={'100%'} gap={'none'} overflowY="auto"
-          css={scroll_customize}> {/* overflowY="auto"
-          css={scroll_customize} */}
-        {/* User Sidebar */}
+    <Stack h={'100vh'} w={'100%'} bgColor={'#cdd4e0'}>
+      <HStack alignItems={'flex-start'} h={'100vh'} w={'100%'} gap={0} overflowY="auto">
+        {/* Sidebar */}
         <Sidebar activeLink={activeLink} />
         
-        {/* End User Sidebar */}
-
-        {/* Dashboard Content */}
-        <Stack
-          h={'100%'}
-          w={'100%'}
-          alignItems="center"
-          marginLeft={'9.5vw'}
-          marginRight={'0vw'}
-        >
+        {/* Content */}
+        <Stack h={'100%'} w={'100%'} alignItems="center" ml={'12.5vw'}>
           <Box w={'94%'}>
-          <Header />
             <VStack>{children}</VStack>
           </Box>
         </Stack>
@@ -73,49 +62,37 @@ export const DesktopDashboardLayoutView = ({ children, activeLink }) => {
   );
 };
 
+
 export const MobileDashboardLayoutView = ({ children, activeLink, title }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
   return (
-    <Stack
-      alignItems={'flex-start'}
-      justifyContent={'flex-start'}
-      bgColor={'#cdd4e0'}
-    >
-      {/* User Sidebar */}
-      <HStack alignItems={'center'} w={'100%'} p={19}>
+    <Stack alignItems={'flex-start'} justifyContent={'flex-start'} bgColor={'#cdd4e0'}>
+      <HStack alignItems={'center'} w={'100%'} p={4}>
         <Box ref={btnRef} onClick={onOpen}>
           <CgMenuLeft size={23} />
         </Box>
-        <HStack marginLeft={5}>
+        <HStack ml={5}>
           <Box h={50} w={50} pos={'relative'}>
             <Image {...images.logo} alt={'logo'} fill />
           </Box>
-
-          <Heading size={'sm'}>{'Dashbord DG'}</Heading>
+          <Heading size={'sm'}>{'Dashboard'}</Heading>
         </HStack>
       </HStack>
-      {/* End User Sidebar */}
 
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-        size={'sm'}
-      >
+      {/* Drawer for Sidebar on Mobile */}
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef} size={'sm'}>
         <DrawerOverlay />
-        <DrawerContent bgColor={colors.primary.gray} maxW={100}>
+        <DrawerContent bgColor={'#cdd4e0'}>
           <DrawerCloseButton />
-
           <DrawerBody>
             <Sidebar activeLink={activeLink} />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
 
-      <Box px={19}>
+      <Box px={4}>
         <Heading size={'md'}>{title}</Heading>
         <VStack alignItems={'flex-start'}>{children}</VStack>
       </Box>

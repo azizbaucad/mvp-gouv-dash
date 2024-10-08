@@ -3,7 +3,7 @@ import { DesktopDashboardLayoutView, MobileDashboardLayoutView } from './views';
 
 export const DashboardLayout = ({ children, activeMenu, title }) => {
   const activeLink = {
-    activeTab: activeMenu?.split('-')?.[0] == 'account' ? 0 : 1,
+    activeTab: activeMenu?.split('-')?.[0] === 'account' ? 0 : 1,
     activeOption: activeMenu?.split('-')?.[1],
   };
 

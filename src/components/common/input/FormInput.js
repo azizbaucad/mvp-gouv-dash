@@ -243,7 +243,7 @@ export const FormSubmit = ({
           color,
           h,
         }}
-        bgColor={bgColor || colors.primary.regular_green_orange}
+        bgColor={bgColor || colors.primary.teal_sombre}
         w={'100%'}
         type={'submit'}
       >
